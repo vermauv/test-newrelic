@@ -637,3 +637,17 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/bookdrupal/bookdrupal-settings.inc');
 }
+
+// Settings for Newrelic with Acquia.
+// if (extension_loaded('newrelic')) {
+  $exploded_path = explode('/', dirname(__FILE__));
+  $site_domain = array_pop($exploded_path);
+  print '<pre>'; print_r($site_domain);
+  $mappings = [
+    'on' => 'on;bookdrupal.dev'
+  ];
+
+  if (array_key_exists($site_domain, $mappings)) {
+    newrelic_set_appname($mappings[$site_domain], '', 'true');
+  }
+// }
