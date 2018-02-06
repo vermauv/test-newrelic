@@ -648,4 +648,4 @@ $mappings = [
 if(array_key_exists($dom, ['test'])){
 	print '<pre>'; print_r($dom);
 }
-die();
+// die();
