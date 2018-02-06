@@ -638,16 +638,15 @@ if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/bookdrupal/bookdrupal-settings.inc');
 }
 
-// Settings for Newrelic with Acquia.
-// if (extension_loaded('newrelic')) {
-  $exploded_path = explode('/', dirname(__FILE__));
-  $site_domain = array_pop($exploded_path);
-  print '<pre>'; print_r($site_domain);
-  $mappings = [
-    'on' => 'on;bookdrupal.dev'
-  ];
 
-  if (array_key_exists($site_domain, $mappings)) {
-    newrelic_set_appname($mappings[$site_domain], '', 'true');
-  }
-// }
+$dir = explode('/',realpath(dirname(__FILE__)));
+$dom= array_pop($dir);
+print '<pre>'; print_r($dom);
+$mappings = [
+'test' => 'on;bookdrupal.test'
+];
+
+if(array_key_exists($dom, ['test'])){
+	print '<pre>'; print_r($dom);
+}
+die();
